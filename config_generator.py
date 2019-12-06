@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import commands
+import subprocess
 import json
 
 import requests
@@ -29,7 +29,7 @@ def open_port(port):
 
     for x in cmd:
         x = x.replace("$1", str(port))
-        commands.getoutput(x)
+        subprocess.getoutput(x)
 
 
 def gen_server():
@@ -196,7 +196,7 @@ def gen_server():
                 data['domain'])
         server_tls['certificates'][0][
             'keyFile'] = "/root/.acme.sh/{0}/{0}.key".format(
-                data['domain'], data['domain'])
+                data['domain'])
         server['inbound']['streamSettings']['tlsSettings'] = server_tls
 
     with open("/etc/v2ray/config.json", "w") as f:
